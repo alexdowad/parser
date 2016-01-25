@@ -94,6 +94,8 @@ module Parser
           input.force_encoding(original_encoding)
         elsif detected_encoding == Encoding::BINARY
           input
+        elsif detected_encoding.ascii_compatible?
+          input.force_encoding(detected_encoding)
         else
           input.
             force_encoding(detected_encoding).
